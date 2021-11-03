@@ -64,16 +64,19 @@ public class Dashboardsend extends Thread {
                     t.println("Enter a topic from the above list");
                     tp=t.read("Input");
                     list.remove(Integer.valueOf(tp));
+                t.println("Unsubscribed");
                 break;
 
             case 3:
                 packet ob3 = new packet();
                 t.println("Enter a message");
                 tp=t.read("Input");
+                t.println("Entered");
                 DatagramPacket packet = ob3.createPackets(ob3.SENDMESG,0,tp);;
                 packet.setAddress(mcIPAddress);
                 packet.setPort(port);
                 sendSocket.send(packet);
+                t.println("Message sent");
         }
 
 

@@ -14,18 +14,10 @@ public class packet {
 
 
     protected DatagramPacket createPackets(int type, int topicNumber,String message) {
-        byte[] tmpArray = null;
 
-
-            tmpArray = message.getBytes();
-            byte[] messageArray = new byte[tmpArray.length];
-            for (int i = 0; i < tmpArray.length; i++) {
-                messageArray[i] = tmpArray[i];
-            }
-
+        byte[] messageArray = message.getBytes();
         byte[] data = new byte[PacketSize];
         data[0] = (byte) type;
-
         ByteBuffer byteBuffer = ByteBuffer.allocate(4);
         byteBuffer.putInt(topicNumber);
         byte[] topicNumberArray = byteBuffer.array();
@@ -37,9 +29,6 @@ public class packet {
         }
         DatagramPacket packet = new DatagramPacket(data, 0, data.length);
 
-
-
-
         return packet;
     }
     protected void setType(byte[] data, byte type)
@@ -48,7 +37,7 @@ public class packet {
     }
 
 
-    protected void send(DatagramPacket receivedPacket, Terminal terminal, DatagramSocket socket,byte type ) throws UnknownHostException {
+   protected void send(DatagramPacket receivedPacket, Terminal terminal, DatagramSocket socket,byte type ) throws UnknownHostException {
 
         InetAddress mcIPAddress = InetAddress.getByName("239.255.255.254");
         byte[] data = receivedPacket.getData();

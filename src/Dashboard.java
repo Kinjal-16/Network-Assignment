@@ -62,25 +62,18 @@ public class Dashboard extends  Thread {
     public void OnReceipt() throws SocketException, UnknownHostException
     {           DatagramSocket soc;
                 byte msg[]=packet.getData();
-
                 int d=1;
                 String rec = new String(packet.getData(),0,packet.getLength());
                 switch(msg[0]) {
-                    case 0:
-                        soc = new DatagramSocket();
-                        ob.send(packet, terminal, soc, ob.ACK);
-                        break;
+
                     case 6:
                          c=0;
                          d=1;
                         for(int i=3;i>=0;i--)
                         {
-
                             c = c+(d*msg[i+1]);
                             d=d*10;
-
                         }
-
                         map.put(c,rec.substring(5));
                         break;
                     case 3:
@@ -89,7 +82,6 @@ public class Dashboard extends  Thread {
                          d=1;
                         for(int i=3;i>=0;i--)
                         {
-
                             c = c+(d*msg[i+1]);
                             d=d*10;
                         }
