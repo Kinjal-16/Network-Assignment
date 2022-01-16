@@ -21,11 +21,13 @@ public class packet {
         ByteBuffer byteBuffer = ByteBuffer.allocate(4);
         byteBuffer.putInt(topicNumber);
         byte[] topicNumberArray = byteBuffer.array();
+        int len = message.length();
+        data[1]=(byte)len;
         for (int i = 0; i < 4; i++) {
-            data[i + 1] = topicNumberArray[i];
+            data[i + 2] = topicNumberArray[i];
         }
         for (int i = 0; i < messageArray.length && i < PacketSize; i++) {
-            data[i + 5] = messageArray[i];
+            data[i + 6] = messageArray[i];
         }
         DatagramPacket packet = new DatagramPacket(data, 0, data.length);
 

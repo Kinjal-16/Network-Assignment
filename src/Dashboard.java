@@ -64,6 +64,8 @@ public class Dashboard extends  Thread {
                 byte msg[]=packet.getData();
                 int d=1;
                 String rec = new String(packet.getData(),0,packet.getLength());
+                int length = rec.charAt(1);
+                System.out.println(length);
                 switch(msg[0]) {
 
                     case 6:
@@ -71,10 +73,10 @@ public class Dashboard extends  Thread {
                          d=1;
                         for(int i=3;i>=0;i--)
                         {
-                            c = c+(d*msg[i+1]);
+                            c = c+(d*msg[i+2]);
                             d=d*10;
                         }
-                        map.put(c,rec.substring(5));
+                        map.put(c,rec.substring(6,(length+6)));
                         break;
                     case 3:
                         soc=new DatagramSocket();
@@ -82,12 +84,12 @@ public class Dashboard extends  Thread {
                          d=1;
                         for(int i=3;i>=0;i--)
                         {
-                            c = c+(d*msg[i+1]);
+                            c = c+(d*msg[i+2]);
                             d=d*10;
                         }
                         if(ob2.list.contains(c))
                         {
-                            terminal.println("Message Received: "+rec.substring(5));
+                            terminal.println("Message Received: "+rec.substring(6,(length+6)));
                             ob.send(packet, terminal, soc, ob.ACK);
 
                         }

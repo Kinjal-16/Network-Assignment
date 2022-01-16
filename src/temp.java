@@ -40,12 +40,13 @@ temp(Terminal t)
             mcSocket.receive(packet);
             msg=packet.getData();
             String rec = new String(packet.getData(),0,packet.getLength());
+            int length = rec.charAt(1);
             switch(msg[0]) {
                 case 0:
                     t.println("Sent");
                     break;
                 case 2:
-                    t.println("Received:\n"+rec.substring(5));
+                    t.println("Received:\n"+rec.substring(6,(length+6)));
 
                     break;
 
