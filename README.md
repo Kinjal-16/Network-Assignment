@@ -9,4 +9,4 @@
 
 4.	The subscribers can also send messages to the publisher via the broker.
 
-5. To run this project, open the src folder and run one instance of Server.java, One instance of User.java and one or more instances of dashboard.java where User.java is the publisher, dashboard.java is the subscriber and Server.java is the broker in this project. These programs can also be run on separate docker containners but make sure you are running a X11 display server like Xming in the background.
+5. To run this project, open the src folder and run one instance of Server.java, one instance of User.java and one or more instances of Dashboard.java where User.java is the publisher, dashboard.java is the subscriber and Server.java is the broker in this project. These programs can also be run on separate docker containners but make sure you are running a X11 display server like Xming in the background.
